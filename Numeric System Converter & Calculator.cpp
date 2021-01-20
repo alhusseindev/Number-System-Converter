@@ -1,6 +1,6 @@
 #include <iostream>
 #include <bitset>
-
+#include <cctype>
 
 int convertToBinary(std::string str_num){
     int binary;
@@ -9,8 +9,10 @@ int convertToBinary(std::string str_num){
 }
 
 
+
 int main(){
-    std::cout << "Please should your preferrence:\n1= Conversion\n2= Calculation" << std::endl;
+
+    std::cout << "Please choose your preferrence:\n1= Conversion\n2= Calculation" << std::endl;
     int choice;
     char operation;
     std::cin >> choice;
@@ -18,56 +20,53 @@ int main(){
     std::cout << "1= Hex\n2= Oct\n3= Dec\n4= Binary" << std::endl;
     int user_input;
     std::string user_number;
-    //int user_number;
+    int user_number_int;
     std::cin >> user_input;
     int binary_n;
     int num1;
     int num2;
+
     if(choice == 1){
         switch(user_input){
             case 1:
                 try{
-                    int result;
                     std::cout << "Please enter the Hex number you would like to convert" << std::endl;
-                    std::cin >> std::hex >> user_number;
-                    result = convertToBinary(user_number);
-                    std::cout << "The octal conversion of your number is: " << std::oct << user_number << std::endl;
-                    std::cout << "The Dec conversion of your number is: " << std::dec << user_number << std::endl;
-                    std::cout << "The binary conversion of your number is: " << result << std::endl;
+                    std::cin >> std::hex >> user_number_int;
+                    std::cout << "The octal conversion of your number is: " << std::oct << user_number_int << std::endl;
+                    std::cout << "The Dec conversion of your number is: " << std::dec << user_number_int << std::endl;
+                    std::cout << "The binary conversion of your number is: " << std::bitset<64>(user_number_int) << std::endl;
+                
                 }catch(...){
                     std::cerr << "Make sure you are entering an Hex number" << std::endl;
                 }
                 break;
             case 2:
                 try{
-                    int result;
                     std::cout << "Please enter the Oct number you would like to convert" << std::endl;
-                    std::cin >> std::oct >> user_number; //user inputs oct number
-                    result = convertToBinary(user_number);
-                    std::cout << "The Hex conversion of your number is: " << std::hex << user_number << std::endl;
-                    std::cout << "The Dec conversion of your number is: " << std::dec << user_number << std::endl;
-                    std::cout << "The binary conversion of your number is: " << result << std::endl;
+                    std::cin >> std::oct >> user_number_int; //user inputs oct number
+                    std::cout << "The Hex conversion of your number is: " << std::hex << user_number_int << std::endl;
+                    std::cout << "The Dec conversion of your number is: " << std::dec << user_number_int << std::endl;
+                    std::cout << "The binary conversion of your number is: " << std::bitset<64>(user_number_int) << std::endl;
                 }catch(...){
                     std::cerr << "Make sure you are entering an Oct number" << std::endl;
                 }
                 break;
             case 3:
                 try{
-                    int result;
                     std::cout << "Please enter the Dec number you would like to convert" << std::endl;
-                    std::cin >> std::dec >> user_number; //user inputs dec number
-                    result = convertToBinary(user_number);
-                    std::cout << "The Hex conversion of your number is: " << std::hex << user_number << std::endl;
-                    std::cout << "The octal conversion of your number is: " << std::oct << user_number << std::endl;
-                    std::cout << "The binary conversion of your number is: " << result << std::endl;
+                    std::cin >> std::dec >> user_number_int; //user inputs dec number
+                    std::cout << "The Hex conversion of your number is: " << std::hex << user_number_int << std::endl;
+                    std::cout << "The octal conversion of your number is: " << std::oct << user_number_int << std::endl;
+                    std::cout << "The binary conversion of your number is: " << std::bitset<64>(user_number_int) << std::endl;
                 }catch(...){
                     std::cerr << "Make sure you are entering a Dec number" << std::endl;
                 }
                 break;
             case 4:
-                std::cout << "Please enter the Binary number you would like to convert" << std::endl;
-                std::cin >> user_number;
                 try{
+                    std::cout << "Please enter the Binary number you would like to convert" << std::endl;
+                    std::cin >> user_number_int;
+                    user_number = std::to_string(user_number_int);
                     binary_n = convertToBinary(user_number);
                     std::cout << "The Hex conversion of your number is: " << std::hex << binary_n << std::endl;
                     std::cout << "The Dec conversion of your number is: " << std::dec << binary_n << std::endl;
@@ -319,10 +318,8 @@ int main(){
 
 
     }else{
-        std::cerr << "Option not available - only 1 or 2!" << std::endl;
+        std::cerr << "Option not available - please choose from the available options!" << std::endl;
     }
-    
-
 
 
 }
